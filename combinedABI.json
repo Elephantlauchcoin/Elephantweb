@@ -95,6 +95,4 @@
         "stateMutability": "nonpayable",
         "type": "function"
     }
-];
-
-module.exports = combinedABI;
+]
