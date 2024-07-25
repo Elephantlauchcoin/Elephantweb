@@ -1,110 +1,195 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const hamburger = document.getElementById('hamburger');
-  const navList = document.querySelector('.nav-list');
+    const connectWalletBtn = document.getElementById('connectWalletBtn');
+    const buyTokensBtn = document.getElementById('buyTokensBtn');
+    const stakeTokensBtn = document.getElementById('stakeTokensBtn');
+    const claimRewardsBtn = document.getElementById('claimRewardsBtn');
+    const amountInput = document.getElementById('amountInput');
 
-  hamburger.addEventListener('click', () => {
-    navList.classList.toggle('open');
-  });
+    // Ganti dengan alamat kontrak dan ABI yang sesuai
+    const contractAddress = '0xEB5ae4B69c755dB67df765f1b9dab01a99175C5D;
+    const contractABI = [[
+	{]
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_tokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenRate",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "_buyer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Sell",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "buyTokens",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "endPresale",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "tokenAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "tokenRate",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "tokensSold",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+
+    let web3;
+    let contract;
+    let userAccount;
+
+    if (window.ethereum) {
+        web3 = new Web3(window.ethereum);
+        contract = new web3.eth.Contract(contractABI, contractAddress);
+
+        connectWalletBtn.addEventListener('click', async () => {
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                userAccount = accounts[0];
+                connectWalletBtn.textContent = `Connected: ${userAccount}`;
+            } catch (error) {
+                console.error('User rejected the request.');
+            }
+        });
+
+        buyTokensBtn.addEventListener('click', async () => {
+            const amount = web3.utils.toWei(amountInput.value, 'ether');
+            try {
+                await contract.methods.buyTokens().send({
+                    from: userAccount,
+                    value: amount
+                });
+                alert('Purchase successful!');
+            } catch (error) {
+                console.error('Transaction failed:', error);
+                alert('Purchase failed!');
+            }
+        });
+
+        stakeTokensBtn.addEventListener('click', async () => {
+            try {
+                await contract.methods.stakeTokens().send({ from: userAccount });
+                alert('Staking successful!');
+            } catch (error) {
+                console.error('Transaction failed:', error);
+                alert('Staking failed!');
+            }
+        });
+
+        claimRewardsBtn.addEventListener('click', async () => {
+            try {
+                await contract.methods.claimRewards().send({ from: userAccount });
+                alert('Rewards claimed!');
+            } catch (error) {
+                console.error('Transaction failed:', error);
+                alert('Claiming rewards failed!');
+            }
+        });
+    } else {
+        connectWalletBtn.textContent = 'Please install MetaMask!';
+    }
+
+    // Countdown Timer
+    const timer = document.getElementById('timer');
+    const endDate = new Date('2024-08-25T00:00:00Z').getTime(); // Ubah tanggal akhir presale sesuai kebutuhan
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = endDate - now;
+
+        if (distance < 0) {
+            timer.innerHTML = 'Presale has ended';
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = hours;
+        document.getElementById('minutes').innerText = minutes;
+        document.getElementById('seconds').innerText = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
 });
 
-// Menghubungkan ke Web3
-if (typeof window.ethereum !== 'undefined') {
-  window.web3 = new Web3(window.ethereum);
-  window.ethereum.enable().catch(error => {
-    console.error('Error enabling Ethereum:', error);
-  });
-} else {
-  console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-}
-
-// Alamat kontrak pintar
-const presaleContractAddress = '0x2dB1d6fD8C07bD725C9208A087220bf9A2528261';
-const tokenContractAddress = '0xEB5ae4B69c755dB67df765f1b9dab01a99175C5D';
-const contractCreatorAddress = '0xAaEE78BCA8ee8698D272867D78053C6f1f9Fafe3'; // Alamat pembuat kontrak
-
-// Memuat ABI dari file JSON gabungan
-async function loadCombinedABI(filePath) {
-  try {
-    const response = await fetch(filePath);
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return response.json();
-  } catch (error) {
-    console.error('Error loading ABI:', error);
-  }
-}
-
-async function init() {
-  const combinedABI = await loadCombinedABI('path/to/combinedABI.json'); // Ganti dengan path yang benar
-
-  if (!combinedABI) {
-    console.error('Failed to load ABI. Initialization aborted.');
-    return;
-  }
-
-  const presaleContract = new web3.eth.Contract(combinedABI.presaleABI, presaleContractAddress);
-  const tokenContract = new web3.eth.Contract(combinedABI.tokenABI, tokenContractAddress);
-
-  // Fungsi untuk membeli token saat presale
-  async function buyTokens(amount) {
-    try {
-      const accounts = await web3.eth.getAccounts();
-      const weiAmount = web3.utils.toWei(amount, 'ether');
-      await presaleContract.methods.buyTokens().send({
-        from: accounts[0],
-        value: weiAmount,
-        to: contractCreatorAddress // Alamat pembuat kontrak
-      });
-      console.log('Tokens purchased successfully');
-    } catch (error) {
-      console.error('Error purchasing tokens:', error);
-    }
-  }
-
-  // Fungsi untuk mengklaim rewards
-  async function claimRewards() {
-    try {
-      const accounts = await web3.eth.getAccounts();
-      await tokenContract.methods.claimRewards().send({
-        from: accounts[0]
-      });
-      console.log('Rewards claimed successfully');
-    } catch (error) {
-      console.error('Error claiming rewards:', error);
-    }
-  }
-
-  // Menambahkan event listener pada tombol
-  document.querySelector('.presale-box button').addEventListener('click', () => {
-    const amount = document.querySelector('.presale-box input').value;
-    buyTokens(amount);
-  });
-
-  document.querySelector('.rewards-box button').addEventListener('click', claimRewards);
-}
-
-init();
-
-// Countdown Timer Script
-const endDate = new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000); // Tanggal akhir 30 hari dari sekarang
-
-const countdown = () => {
-  const now = new Date().getTime();
-  const gap = endDate - now;
-
-  const second = 1000;
-  const minute = second * 60;
-  const hour = minute * 60;
-  const day = hour * 24;
-
-  const textDay = Math.floor(gap / day);
-  const textHour = Math.floor((gap % day) / hour);
-  const textMinute = Math.floor((gap % hour) / minute);
-  const textSecond = Math.floor((gap % minute) / second);
-
-  document.getElementById('days').innerText = textDay;
-  document.getElementById('hours').innerText = textHour;
-  document.getElementById('minutes').innerText = textMinute;
-  document.getElementById('seconds').innerText = textSecond;
-};
-
-setInterval(countdown, 1000);
