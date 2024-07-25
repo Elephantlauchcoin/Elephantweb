@@ -1,5 +1,4 @@
 const combinedABI = [
-    // ABI untuk kontrak presale
     {
         "inputs": [
             { "internalType": "address", "name": "_tokenAddress", "type": "address" },
@@ -59,7 +58,6 @@ const combinedABI = [
         "stateMutability": "view",
         "type": "function"
     },
-    // ABI untuk kontrak token
     {
         "inputs": [],
         "stateMutability": "nonpayable",
