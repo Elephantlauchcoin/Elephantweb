@@ -32,9 +32,9 @@
         <section class="presale-staking-rewards" id="presale">
             <div class="presale-box">
                 <h2>Presale is Live!</h2>
-                <input type="text" placeholder="Enter amount in BNB">
-                <button onclick="buyTokens()">Buy Now</button>
-                <button id="connectWallet">Connect Wallet</button>
+                <input type="text" id="amountInput" placeholder="Enter amount in BNB">
+                <button id="buyTokensBtn">Buy Now</button>
+                <button id="connectWalletBtn">Connect Wallet</button>
                 <div class="timer">
                     <p>Presale ends in:</p>
                     <div id="timer">
@@ -48,12 +48,12 @@
             <div class="staking-box">
                 <h2>Staking</h2>
                 <p>Stake your ElephantCoin to earn additional rewards. The longer you stake, the more you earn!</p>
-                <button onclick="stakeTokens()">Stake Now</button>
+                <button id="stakeTokensBtn">Stake Now</button>
             </div>
             <div class="rewards-box">
                 <h2>Claim Rewards</h2>
                 <p>Claim your rewards from holding and staking ElephantCoin.</p>
-                <button onclick="claimRewards()">Claim Rewards</button>
+                <button id="claimRewardsBtn">Claim Rewards</button>
             </div>
         </section>
         <section class="about" id="about">
