@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elephant Coin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalnia+Glaze&family=Baskervville+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="menu-toggle" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="#presale">Presale</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tokenomics">Tokenomics</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+    </nav>
+    <header class="header">
+        <h1 class="title">Elephant Coin</h1>
+        <p class="subtitle">Hi, I'm Elephant! I'm glad I got to know you. Let's play together so that life is not empty. Your life will be in vain if we don't have fun.</p>
+    </header>
+    <main>
+        <section class="presale-staking-rewards" id="presale">
+            <div class="presale-box">
+                <h2>Presale is Live!</h2>
+                <input type="text" placeholder="Enter amount in BNB">
+                <button onclick="buyTokens()">Buy Now</button>
+                <button id="connectWallet">Connect Wallet</button>
+                <div class="timer">
+                    <p>Presale ends in:</p>
+                    <div id="timer">
+                        <span id="days">00</span> Days
+                        <span id="hours">00</span> Hours
+                        <span id="minutes">00</span> Minutes
+                        <span id="seconds">00</span> Seconds
+                    </div>
+                </div>
+            </div>
+            <div class="staking-box">
+                <h2>Staking</h2>
+                <p>Stake your ElephantCoin to earn additional rewards. The longer you stake, the more you earn!</p>
+                <button onclick="stakeTokens()">Stake Now</button>
+            </div>
+            <div class="rewards-box">
+                <h2>Claim Rewards</h2>
+                <p>Claim your rewards from holding and staking ElephantCoin.</p>
+                <button onclick="claimRewards()">Claim Rewards</button>
+            </div>
+        </section>
+        <section class="about" id="about">
+            <h2>About Elephant Coin</h2>
+            <p class="description">
+                <strong>ElephantCoin: Fun and Benefits for All</strong>
+                ElephantCoin (ELP) is a decentralized token designed to provide fun and benefits to its holders. This project not only offers profitable investment opportunities but also various features that make the user experience more enjoyable.
+
+                <strong>Fun and Entertainment</strong><br>
+                ElephantCoin focuses not only on the financial aspects but also commits to providing entertainment. With ElephantCoin, you can enjoy various entertainments, including access to movies and other content. We want to ensure that every transaction and participation in our ecosystem brings happiness and entertainment to users.
+
+                <strong>Benefits and Rewards</strong><br>
+                ElephantCoin holders benefit from various exciting features such as rewards and staking. With our unique reward system, you can earn significant rewards just by holding our tokens. Additionally, you can stake to earn extra dividends, providing opportunities for passive income while actively participating in the ElephantCoin ecosystem.
+
+                <strong>Staking and Farming</strong><br>
+                ElephantCoin provides staking and farming features that allow you to optimize the benefits from your tokens. Staking allows you to earn additional rewards by locking your tokens, while farming provides opportunities to earn more tokens through active participation.
+
+                <strong>Conclusion</strong><br>
+                ElephantCoin is a project that combines financial benefits with entertainment and fun. With various innovative features and benefits for token holders, ElephantCoin aims to create a beneficial and enjoyable ecosystem for all its users.
+            </p>
+        </section>
+        <section class="tokenomics" id="tokenomics">
+            <h2>Tokenomics</h2>
+            <p>
+                <strong>Total Supply:</strong> 1 Quadrillion<br>
+                <strong>Transaction Tax:</strong> 3.5%<br>
+                - 1.5% for Team and Development Costs<br>
+                - 1.5% for Rewards<br>
+                - 0.5% for Burning<br>
+            </p>
+        </section>
+        <section class="roadmap" id="roadmap">
+            <h2>Roadmap</h2>
+            <p>
+                <strong>Quarter 1:</strong> Launch of DEX and listing on CMC and CoinGecko<br>
+                <strong>Quarter 2:</strong> Community Building and Development<br>
+                <strong>Quarter 3:</strong> Marketing and Additional Listings<br>
+                <strong>Quarter 4:</strong> Fun and entertainment for the elephant community by launching staking and claiming as many rewards as possible<br>
+            </p>
+        </section>
+        <section class="photos" id="photos">
+            <h2>Join us and create fun together</h2>
+            <div class="photo">
+                <img src="photo2.jpg" alt="Photo 2">
+                <p>Rock Lee</p>
+            </div>
+            <div class="photo">
+                <img src="photo3.jpg" alt="Photo 3">
+                <p>Hello</p>
+            </div>
+        </section>
+        <section class="team" id="team">
+            <h2>ELP</h2>
+            <div class="team-member">
+                <img src="photo.jpg" alt="Owner Photo">
+                <p>Elephant(ELP)</p>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>Contact Us:</p>
+        <div class="social-links">
+            <a href="https://t.me/+vq-suNGv7x5mMzA1">Telegram</a>
+            <a href="https://x.com/EMemechain?t=cTmAA3-JPR3Zr-jOwuIOUQ&s=09">Twitter</a>
+            <a href="https://sg.docworkspace.com/d/sIFfy46KJAse1hbUG?sa=cl">Whitepaper</a>
+        </div>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
