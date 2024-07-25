@@ -1,4 +1,4 @@
-const combinedABI = [
+[
     {
         "inputs": [
             { "internalType": "address", "name": "_tokenAddress", "type": "address" },
