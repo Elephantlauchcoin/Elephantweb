@@ -34,7 +34,7 @@ async function loadCombinedABI(filePath) {
 }
 
 async function init() {
-  const combinedABI = await loadCombinedABI('path/to/combinedABI.json'); // Ganti dengan path yang benar
+  const combinedABI = await loadCombinedABI('combinedABI.json'); // Ganti dengan path yang benar
 
   if (!combinedABI) {
     console.error('Failed to load ABI. Initialization aborted.');
@@ -74,12 +74,12 @@ async function init() {
   }
 
   // Menambahkan event listener pada tombol
-  document.querySelector('.presale-box button').addEventListener('click', () => {
-    const amount = document.querySelector('.presale-box input').value;
+  document.querySelector('#buyTokensBtn').addEventListener('click', () => {
+    const amount = document.querySelector('#amountInput').value;
     buyTokens(amount);
   });
 
-  document.querySelector('.rewards-box button').addEventListener('click', claimRewards);
+  document.querySelector('#claimRewardsBtn').addEventListener('click', claimRewards);
 }
 
 init();
@@ -108,4 +108,3 @@ const countdown = () => {
 };
 
 setInterval(countdown, 1000);
-
