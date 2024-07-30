@@ -1,110 +1,209 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const hamburger = document.getElementById('hamburger');
-  const navList = document.querySelector('.nav-list');
+// scripts.js
 
-  hamburger.addEventListener('click', () => {
-    navList.classList.toggle('open');
-  });
-});
+const web3 = new Web3(window.ethereum);
 
-// Menghubungkan ke Web3
-if (typeof window.ethereum !== 'undefined') {
-  window.web3 = new Web3(window.ethereum);
-  window.ethereum.enable().catch(error => {
-    console.error('Error enabling Ethereum:', error);
-  });
-} else {
-  console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-}
+const presaleAddress = 0x2dB1d6fD8C07bD725C9208A087220bf9A2528261;
+const tokenAddress = 0xEB5ae4B69c755dB67df765f1b9dab01a99175C5D;
 
-// Alamat kontrak pintar
-const presaleContractAddress = '0x2dB1d6fD8C07bD725C9208A087220bf9A2528261';
-const tokenContractAddress = '0xEB5ae4B69c755dB67df765f1b9dab01a99175C5D';
-const contractCreatorAddress = '0xAaEE78BCA8ee8698D272867D78053C6f1f9Fafe3'; // Alamat pembuat kontrak
+// ABI for the contracts
+const presaleABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_tokenAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokenRate",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "_buyer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Sell",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "buyTokens",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "endPresale",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "tokenAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "tokenRate",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "tokensSold",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
 
-// Memuat ABI dari file JSON gabungan
-async function loadCombinedABI(filePath) {
+const tokenABI = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
+
+// Initializing the contract instances
+const presaleContract = new web3.eth.Contract(presaleABI, presaleAddress);
+const tokenContract = new web3.eth.Contract(tokenABI, tokenAddress);
+
+// Function to buy tokens
+async function buyTokens() {
+  const accounts = await web3.eth.getAccounts();
+  const amount = document.getElementById("amount").value;
+
   try {
-    const response = await fetch(filePath);
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return response.json();
+    await presaleContract.methods.buyTokens().send({
+      from: accounts[0],
+      value: web3.utils.toWei(amount, "ether")
+    });
+    alert("Tokens purchased successfully!");
   } catch (error) {
-    console.error('Error loading ABI:', error);
+    alert("There was an error with your purchase: " + error.message);
   }
 }
 
+// Initializing the connection to MetaMask
 async function init() {
-  const combinedABI = await loadCombinedABI('combinedABI.json'); // Ganti dengan path yang benar
-
-  if (!combinedABI) {
-    console.error('Failed to load ABI. Initialization aborted.');
-    return;
-  }
-
-  const presaleContract = new web3.eth.Contract(combinedABI.presaleABI, presaleContractAddress);
-  const tokenContract = new web3.eth.Contract(combinedABI.tokenABI, tokenContractAddress);
-
-  // Fungsi untuk membeli token saat presale
-  async function buyTokens(amount) {
+  if (window.ethereum) {
     try {
-      const accounts = await web3.eth.getAccounts();
-      const weiAmount = web3.utils.toWei(amount, 'ether');
-      await presaleContract.methods.buyTokens().send({
-        from: accounts[0],
-        value: weiAmount,
-        to: contractCreatorAddress // Alamat pembuat kontrak
-      });
-      console.log('Tokens purchased successfully');
+      await window.ethereum.enable();
     } catch (error) {
-      console.error('Error purchasing tokens:', error);
+      alert("User denied account access");
     }
+  } else {
+    alert("Please install MetaMask!");
   }
-
-  // Fungsi untuk mengklaim rewards
-  async function claimRewards() {
-    try {
-      const accounts = await web3.eth.getAccounts();
-      await tokenContract.methods.claimRewards().send({
-        from: accounts[0]
-      });
-      console.log('Rewards claimed successfully');
-    } catch (error) {
-      console.error('Error claiming rewards:', error);
-    }
-  }
-
-  // Menambahkan event listener pada tombol
-  document.querySelector('#buyTokensBtn').addEventListener('click', () => {
-    const amount = document.querySelector('#amountInput').value;
-    buyTokens(amount);
-  });
-
-  document.querySelector('#claimRewardsBtn').addEventListener('click', claimRewards);
 }
 
-init();
-
-// Countdown Timer Script
-const endDate = new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000); // Tanggal akhir 30 hari dari sekarang
-
-const countdown = () => {
-  const now = new Date().getTime();
-  const gap = endDate - now;
-
-  const second = 1000;
-  const minute = second * 60;
-  const hour = minute * 60;
-  const day = hour * 24;
-
-  const textDay = Math.floor(gap / day);
-  const textHour = Math.floor((gap % day) / hour);
-  const textMinute = Math.floor((gap % hour) / minute);
-  const textSecond = Math.floor((gap % minute) / second);
-
-  document.getElementById('days').innerText = textDay;
-  document.getElementById('hours').innerText = textHour;
-  document.getElementById('minutes').innerText = textMinute;
-  document.getElementById('seconds').innerText = textSecond;
-};
-
-setInterval(countdown, 1000);
+// Calling the init function to connect to MetaMask on page load
+window.addEventListener('load', async () => {
+  await init();
+});
