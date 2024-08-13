@@ -3,124 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elephant Coin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kalnia+Glaze&family=Baskervville+SC&display=swap" rel="stylesheet">
+    <title>Xiio Exchange</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="menu-toggle" id="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+<header>
+    <div class="header-container">
+        <div class="header-left-icons">
+            <a href="#" title="Profile"><i class="fas fa-user"></i></a>
+            <div class="search-container">
+                <input type="text" placeholder="Search...">
+                <a href="#" title="Search"><i class="fas fa-search"></i></a>
+            </div>
         </div>
-        <ul class="nav-list">
-            <li><a href="#presale">Presale</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#tokenomics">Tokenomics</a></li>
-            <li><a href="#roadmap">Roadmap</a></li>
-            <li><a href="#team">Team</a></li>
+        <div class="header-right-icons">
+            <a href="#" title="Contact Center"><i class="fas fa-headset"></i></a>
+            <a href="#" title="Scan"><i class="fas fa-qrcode"></i></a>
+            <a href="#" title="Notification"><i class="fas fa-bell"></i></a>
+        </div>
+    </div>
+</header>
+
+<section class="slider">
+    <div class="slides">
+        <div class="slide">
+            <a href="page1.html">
+                <img src="image1.jpg" alt="Image 1">
+            </a>
+        </div>
+        <div class="slide">
+            <a href="page2.html">
+                <img src="image2.jpg" alt="Image 2">
+            </a>
+        </div>
+        <div class="slide">
+            <a href="page3.html">
+                <img src="image3.jpg" alt="Image 3">
+            </a>
+        </div>
+    </div>
+
+    <!-- Radio Buttons for automatic navigation -->
+    <input type="radio" name="radio-btn" id="radio1" checked>
+    <input type="radio" name="radio-btn" id="radio2">
+    <input type="radio" name="radio-btn" id="radio3">
+
+    <!-- Manual Navigation -->
+    <div class="navigation-manual">
+        <label for="radio1" class="manual-btn"></label>
+        <label for="radio2" class="manual-btn"></label>
+        <label for="radio3" class="manual-btn"></label>
+    </div>
+</section>
+
+      <main>
+        
+        <section class="announcement-container">
+    <div class="static-elements">
+        <i class="fas fa-volume-up"></i> <!-- Ikon speaker -->
+        <a href="halaman_lain.html" class="menu-link">
+            <i class="fas fa-bars"></i> <!-- Ikon tiga garis -->
+        </a>
+    </div>
+    <div class="scrolling-text-container">
+        <div class="scrolling-text">
+            Pengumuman: Pada hari Kamis, Xiio akan mengadakan event besar.
+        </div>
+    </div>
+</section>
+        
+        <section class="market-icons">
+            <div class="market-icons-row">
+                <a href="#" title="Convert">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Convert</span>
+                </a>
+                <a href="#" title="Staking">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>Staking</span>
+                </a>
+                <a href="#" title="Referral">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Referral</span>
+                </a>
+                <a href="#" title="Academy">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Academy</span>
+                </a>
+            </div>
+            <div class="market-icons-row">
+                <a href="#" title="Community Chat">
+                    <i class="fas fa-comments"></i>
+                    <span>Community</span>
+                </a>
+                <a href="#" title="Proposal">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Proposal</span>
+                </a>
+                <a href="#" title="Documents">
+                    <i class="fas fa-file"></i>
+                    <span>P2p</span>
+                </a>
+                <a href="#" title="Website">
+                    <i class="fas fa-globe"></i>
+                    <span>News</span>
+                </a>
+            </div>
+        </section>
+        
+<section class="coin-sedang trending">
+    <h2>Trending Coins</h2>
+    <div class="market-data">
+        <div class="market-item">
+            <h3>Shiba/USDT</h3>
+            <div class="price-box">
+                <p class="price" id="shiba-price">5,000</p>
+                <p class="currency">Rp. 20,000</p>
+                <p class="change increase" id="shiba-change">+46%</p>
+            </div>
+        </div>
+        <div class="market-item">
+            <h3>Apos/USDT</h3>
+            <div class="price-box">
+                <p class="price" id="apos-price">3,000</p>
+                <p class="currency">Rp. 12,000</p>
+                <p class="change decrease" id="apos-change">-10%</p>
+            </div>
+        </div>
+        <div class="market-item">
+            <h3>BNB/USDT</h3>
+            <div class="price-box">
+                <p class="price" id="bnb-price">8,000</p>
+                <p class="currency">Rp. 32,000</p>
+                <p class="change increase" id="bnb-change">+15%</p>
+            </div>
+        </div>
+                <div class="market-item">
+            <h3>BNB/USDT</h3>
+            <div class="price-box">
+                <p class="price" id="bnb-price">8,000</p>
+                <p class="currency">Rp. 32,000</p>
+                <p class="change increase" id="bnb-change">+15%</p>
+            </div>
+        </div>
+                        <div class="market-item">
+            <h3>BNB/USDT</h3>
+            <div class="price-box">
+                <p class="price" id="bnb-price">8,000</p>
+                <p class="currency">Rp. 32,000</p>
+                <p class="change increase" id="bnb-change">+15%</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tabel-coin">
+    <div class="coin-header">
+        <div class="tab" onclick="showTable('hot')">Hot</div>
+        <div class="tab" onclick="showTable('vol24')">Vol24</div>
+        <div class="tab" onclick="showTable('gainer')">Gainer</div>
+        <div class="tab" onclick="showTable('loser')">Loser</div>
+        <div class="tab" onclick="showTable('new-listing')">New Listing</div>
+    </div>
+
+    <table id="hot" class="coin-table active-table">
+        <thead>
+            <tr>
+                <th>Pair</th>
+                <th>kosong</th>
+                <th>Lastprice</th>
+                <th>24h Change</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Koin-koin untuk tab "Hot" -->
+            <tr id="btc-row">
+                <td class="coin-name">
+                    Bitcoin (BTC)<br>
+                    <span id="btc-volume-usd" class="volume-usd">$0</span>
+                </td>
+                <td></td>
+                <td class="price-cell">
+                    <span id="btc-price-usd" class="price-usd">$0</span><br>
+                    <span id="btc-price-local" class="price-local">Rp 0</span>
+                </td>
+                <td id="btc-change" class="change-cell">
+                    <span class="change-box">0%</span>
+                </td>
+            </tr>
+            <tr id="eth-row">
+                <td class="coin-name">
+                    Ethereum (ETH)<br>
+                    <span id="eth-volume-usd" class="volume-usd">$0</span>
+                </td>
+                <td></td>
+                <td class="price-cell">
+                    <span id="eth-price-usd" class="price-usd">$0</span><br>
+                    <span id="eth-price-local" class="price-local">Rp 0</span>
+                </td>
+                <td id="eth-change" class="change-cell">
+                    <span class="change-box">0%</span>
+                </td>
+            </tr>
+            <tr id="doge-row">
+                <td class="coin-name">
+                    Dogecoin (DOGE)<br>
+                    <span id="doge-volume-usd" class="volume-usd">$0</span>
+                </td>
+                <td></td>
+                <td class="price-cell">
+                    <span id="doge-price-usd" class="price-usd">$0</span><br>
+                    <span id="doge-price-local" class="price-local">Rp 0</span>
+                </td>
+                <td id="doge-change" class="change-cell">
+                    <span class="change-box">0%</span>
+                </td>
+            </tr>
+            <tr id="rndr-row">
+                <td class="coin-name">
+                    Render (RNDR)<br>
+                    <span id="rndr-volume-usd" class="volume-usd">$0</span>
+                </td>
+                <td></td>
+                <td class="price-cell">
+                    <span id="rndr-price-usd" class="price-usd">$0</span><br>
+                    <span id="rndr-price-local" class="price-local">Rp 0</span>
+                </td>
+                <td id="rndr-change" class="change-cell">
+                    <span class="change-box">0%</span>
+                </td>
+            </tr>
+            <tr id="xodex-row">
+                <td class="coin-name">
+                    Xodex (XODEX)<br>
+                    <span id="xodex-volume-usd" class="volume-usd">$0</span>
+                </td>
+                <td></td>
+                <td class="price-cell">
+                    <span id="xodex-price-usd" class="price-usd">$0</span><br>
+                    <span id="xodex-price-local" class="price-local">Rp 0</span>
+                </td>
+                <td id="xodex-change" class="change-cell">
+                    <span class="change-box">0%</span>
+                </td>
+            </tr>
+            <tr id="dot-row">
+                <td class="coin-name">
+                    Polkadot (DOT)<br>
+                    <span id="dot-volume-usd" class="volume-usd">$0</span>
+                </td>
+                <td></td>
+                <td class="price-cell">
+                    <span id="dot-price-usd" class="price-usd">$0</span><br>
+                    <span id="dot-price-local" class="price-local">Rp 0</span>
+                </td>
+                <td id="dot-change" class="change-cell">
+                    <span class="change-box">0%</span>
+                </td>
+            </tr>
+            <tr id="link-row">
+                <td class="coin-name">
+                    Chainlink (LINK)<br>
+                    <span id="link-volume-usd" class="volume-usd">$0</span>
+                </td>
+                <td></td>
+                <td class="price-cell">
+                    <span id="link-price-usd" class="price-usd">$0</span><br>
+                    <span id="link-price-local" class="price-local">Rp 0</span>
+                </td>
+                <td id="link-change" class="change-cell">
+                    <span class="change-box">0%</span>
+                </td>
+            </tr>
+            <tr id="ltc-row">
+                <td class="coin-name">
+                    Litecoin (LTC)<br>
+                    <span id="ltc-volume-usd" class="volume-usd">$0</span>
+                </td>
+                <td></td>
+                <td class="price-cell">
+                    <span id="ltc-price-usd" class="price-usd">$0</span><br>
+                    <span id="ltc-price-local" class="price-local">Rp 0</span>
+                </td>
+                <td id="ltc-change" class="change-cell">
+                    <span class="change-box">0%</span>
+                </td>
+            </tr>
+            <tr id="shiba-row">
+                <td class="coin-name">
+                    Shiba Inu (SHIBA)<br>
+                    <span id="shiba-volume-usd" class="volume-usd">$0</span>
+                </td>
+                <td></td>
+                <td class="price-cell">
+                    <span id="shiba-price-usd" class="price-usd">$0</span><br>
+                    <span id="shiba-price-local" class="price-local">Rp 0</span>
+                </td>
+                <td id="shiba-change" class="change-cell">
+                    <span class="change-box">0%</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Tambahkan tabel lainnya untuk tab lainnya jika diperlukan -->
+</section>
+<!-- Pastikan untuk menyertakan tag penutup untuk <main> jika ada di luar kode ini -->
+ 
+
+    </main>
+    <!-- Navigasi di bagian bawah -->
+    <nav class="bottom-nav">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="market.html"><i class="fas fa-chart-bar"></i> Market</a></li>
+            <li><a href="trade.html"><i class="fas fa-exchange-alt"></i> Trade</a></li>
+            <li><a href="futures.html"><i class="fas fa-chart-line"></i> Futures</a></li>
+            <li><a href="wallet.html"><i class="fas fa-wallet"></i> Wallet</a></li>
         </ul>
     </nav>
-    <header class="header">
-        <h1 class="title">Elephant Coin</h1>
-        <p class="subtitle">Hi, I'm Elephant! I'm glad I got to know you. Let's play together so that life is not empty. Your life will be in vain if we don't have fun.</p>
-    </header>
-    <main>
-        <section class="presale-staking-rewards" id="presale">
-            <div class="presale-box">
-                <h2>Presale is Live!</h2>
-                <input type="text" id="amountInput" placeholder="Enter amount in BNB">
-                <button id="buyTokensBtn">Buy Now</button>
-                <button id="connectWalletBtn">Connect Wallet</button>
-                <div class="timer">
-                    <p>Presale ends in:</p>
-                    <div id="timer">
-                        <span id="days">00</span> Days
-                        <span id="hours">00</span> Hours
-                        <span id="minutes">00</span> Minutes
-                        <span id="seconds">00</span> Seconds
-                    </div>
-                </div>
-            </div>
-            <div class="staking-box">
-                <h2>Staking</h2>
-                <p>Stake your ElephantCoin to earn additional rewards. The longer you stake, the more you earn!</p>
-                <button id="stakeTokensBtn">Stake Now</button>
-            </div>
-            <div class="rewards-box">
-                <h2>Claim Rewards</h2>
-                <p>Claim your rewards from holding and staking ElephantCoin.</p>
-                <button id="claimRewardsBtn">Claim Rewards</button>
-            </div>
-        </section>
-        <section class="about" id="about">
-            <h2>About Elephant Coin</h2>
-            <p class="description">
-                <strong>ElephantCoin: Fun and Benefits for All</strong>
-                ElephantCoin (ELP) is a decentralized token designed to provide fun and benefits to its holders. This project not only offers profitable investment opportunities but also various features that make the user experience more enjoyable.
-
-                <strong>Fun and Entertainment</strong><br>
-                ElephantCoin focuses not only on the financial aspects but also commits to providing entertainment. With ElephantCoin, you can enjoy various entertainments, including access to movies and other content. We want to ensure that every transaction and participation in our ecosystem brings happiness and entertainment to users.
-
-                <strong>Benefits and Rewards</strong><br>
-                ElephantCoin holders benefit from various exciting features such as rewards and staking. With our unique reward system, you can earn significant rewards just by holding our tokens. Additionally, you can stake to earn extra dividends, providing opportunities for passive income while actively participating in the ElephantCoin ecosystem.
-
-                <strong>Staking and Farming</strong><br>
-                ElephantCoin provides staking and farming features that allow you to optimize the benefits from your tokens. Staking allows you to earn additional rewards by locking your tokens, while farming provides opportunities to earn more tokens through active participation.
-
-                <strong>Conclusion</strong><br>
-                ElephantCoin is a project that combines financial benefits with entertainment and fun. With various innovative features and benefits for token holders, ElephantCoin aims to create a beneficial and enjoyable ecosystem for all its users.
-            </p>
-        </section>
-        <section class="tokenomics" id="tokenomics">
-            <h2>Tokenomics</h2>
-            <p>
-                <strong>Total Supply:</strong> 1 Quadrillion<br>
-                <strong>Transaction Tax:</strong> 3.5%<br>
-                - 1.5% for Team and Development Costs<br>
-                - 1.5% for Rewards<br>
-                - 0.5% for Burning<br>
-            </p>
-        </section>
-        <section class="roadmap" id="roadmap">
-            <h2>Roadmap</h2>
-            <p>
-                <strong>Quarter 1:</strong> Launch of DEX and listing on CMC and CoinGecko<br>
-                <strong>Quarter 2:</strong> Community Building and Development<br>
-                <strong>Quarter 3:</strong> Marketing and Additional Listings<br>
-                <strong>Quarter 4:</strong> Fun and entertainment for the elephant community by launching staking and claiming as many rewards as possible<br>
-            </p>
-        </section>
-        <section class="photos" id="photos">
-            <h2>Join us and create fun together</h2>
-            <div class="photo">
-                <img src="photo2.jpg" alt="Photo 2">
-                <p>Rock Lee</p>
-            </div>
-            <div class="photo">
-                <img src="photo3.jpg" alt="Photo 3">
-                <p>Hello</p>
-            </div>
-        </section>
-        <section class="team" id="team">
-            <h2>ELP</h2>
-            <div class="team-member">
-                <img src="photo.jpg" alt="Owner Photo">
-                <p>Elephant(ELP)</p>
-            </div>
-        </section>
-    </main>
-    <footer class="footer">
-        <p>Contact Us:</p>
-        <div class="social-links">
-            <a href="https://t.me/+vq-suNGv7x5mMzA1">Telegram</a>
-            <a href="https://x.com/EMemechain?t=cTmAA3-JPR3Zr-jOwuIOUQ&s=09">Twitter</a>
-            <a href="https://sg.docworkspace.com/d/sIFfy46KJAse1hbUG?sa=cl">Whitepaper</a>
-        </div>
-    </footer>
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
+    <script src="begron.js"></script>
+    <script src="slider.js"></script>
 </body>
-                            </html>
+</html>
